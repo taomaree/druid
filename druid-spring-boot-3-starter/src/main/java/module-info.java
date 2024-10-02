@@ -13,4 +13,5 @@ open module druid.spring.boot3.starter {
     requires java.sql;
     requires java.naming;
     requires java.management;
+    requires spring.boot.actuator;
 }
