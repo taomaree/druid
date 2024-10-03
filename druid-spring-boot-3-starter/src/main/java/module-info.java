@@ -14,4 +14,5 @@ open module druid.spring.boot3.starter {
     requires java.naming;
     requires java.management;
     requires spring.boot.actuator;
+    requires micrometer.core;
 }

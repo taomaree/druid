@@ -15,67 +15,50 @@
  */
 // Created on 2022年1月14日
 // $Id$
-package com.alibaba.druid.spring.boot3.autoconfigure.support.actuator;
-
-//import org.springframework.boot.autoconfigure.jdbc.metadata.AbstractDataSourcePoolMetadata;
+package com.alibaba.druid.spring.boot3.autoconfigure.metrics;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.boot.jdbc.metadata.AbstractDataSourcePoolMetadata;
 
+// https://github.com/alibaba/druid/pull/4624
 /**
- * @author zero3h
+ * @author hai
+ * @version 1.0
+ * Created on 2021/11/16 下午7:15
+ * @description
  */
-
 public class DruidDataSourcePoolMetadata extends AbstractDataSourcePoolMetadata<DruidDataSource> {
     /**
-     * @param dataSource
+     * Create an instance with the data source to use.
+     *
+     * @param dataSource the data source
      */
     public DruidDataSourcePoolMetadata(DruidDataSource dataSource) {
         super(dataSource);
     }
 
-    /*
-     * (non-Javadoc)
-     * @see org.springframework.boot.autoconfigure.jdbc.metadata.DataSourcePoolMetadata#getActive()
-     */
     @Override
     public Integer getActive() {
         return getDataSource().getActiveCount();
     }
 
-    /*
-     * (non-Javadoc)
-     * @see org.springframework.boot.autoconfigure.jdbc.metadata.DataSourcePoolMetadata#getMax()
-     */
     @Override
     public Integer getMax() {
         return getDataSource().getMaxActive();
     }
 
-    /*
-     * (non-Javadoc)
-     * @see org.springframework.boot.autoconfigure.jdbc.metadata.DataSourcePoolMetadata#getMin()
-     */
     @Override
     public Integer getMin() {
         return getDataSource().getMinIdle();
     }
 
-    /*
-     * (non-Javadoc)
-     * @see org.springframework.boot.autoconfigure.jdbc.metadata.DataSourcePoolMetadata#getValidationQuery()
-     */
     @Override
     public String getValidationQuery() {
         return getDataSource().getValidationQuery();
     }
 
-    /**
-     * 兼容spring boot 2.0后新增的方法
-     * @return
-     */
+    @Override
     public Boolean getDefaultAutoCommit() {
         return getDataSource().isDefaultAutoCommit();
     }
-
 }
